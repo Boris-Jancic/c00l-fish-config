@@ -10,7 +10,7 @@ thefuck --alias | source
 starship init fish | source
 
 # Replaces default ls command with more collorfull & descriptive
-alias ls "eza --color=always --long --git --icons=always --no-user --tree"
+alias ls "eza --color=always --long --git --icons=always --no-user --tree --level=1"
 
 
 # ========= Zoxide -> better cd command
@@ -23,17 +23,29 @@ else
 end
 
 # Replaces defauld cd command with zoxide
-alias z="ls"
+alias z="cd"
 
 
 # ========= Fzf -> fuzzy finder
 
 eval "$(fzf --fish)"
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'bat -n --color=always --theme=TwoDark {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+# ========= Kubecolor -> better k8s output
+
+alias kubectl="kubecolor"
+
+# Also works for OpenShift CLI
+alias oc="env KUBECTL_COMMAND=oc kubecolor"
 
 
 # ========= Git aliases
+
 alias glo="git log --graph --oneline --decorate"
 alias gs="git status"
 alias gcm="git commit -m"
 alias gcam="git commit -am"
-alias gc="git checkout
+alias gc="git checkout"
