@@ -2,12 +2,12 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-# ========= Thefuck -> terminal mistake corrector 
+# ========= Thefuck -> terminal mistake corrector
+
 thefuck --alias | source
 
 
 # ========= Starship -> more pretty terminal
-starship init fish | source
 
 # Replaces default ls command with more collorfull & descriptive
 alias ls "eza --color=always --long --git --icons=always --no-user --tree --level=1"
@@ -34,6 +34,7 @@ export FZF_CTRL_T_OPTS="
   --preview 'bat -n --color=always --theme=TwoDark {}'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
+
 # ========= Kubecolor -> better k8s output
 
 alias kubectl="kubecolor"
@@ -46,6 +47,17 @@ alias oc="env KUBECTL_COMMAND=oc kubecolor"
 
 alias glo="git log --graph --oneline --decorate"
 alias gs="git status"
+alias gp="git pull"
+alias ga="git add"
 alias gcm="git commit -m"
 alias gcam="git commit -am"
 alias gc="git checkout"
+alias gd="git diff"
+
+
+# ========= Terraform aliases
+
+alias tf="terraform"
+alias tfp="terraform plan"
+alias tfa="terraform apply"
+alias tfmt="terraform fmt"
